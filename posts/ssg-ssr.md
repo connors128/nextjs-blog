@@ -55,7 +55,7 @@ The goal was to create an environment that is modeled similar to Derrick Hall. H
 The main design of the environment was to have a hallway the user will be placed in and will be able to walk down. There will also be a system of doors the user must be able to open. Because this is a SDSS, the user must go from room to room to search for the Virtual Character and determine if they are a threat. The rooms have similar layouts with desks and chairs, but with different orientations. Figure 1 shows the external and internal layout of the environment. There are five rooms and one main hallway. 
 
 Figure 1. Internal and External Layout of the Building
-![Figure 1](https://github.com/connors128/nextjs-blog/pictures/image-000.jpg) ![Figure 1](https://github.com/connors128/nextjs-blog/pictures/image-001.jpg) |
+![Figure 1](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-000.jpg) ![Figure 1](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-001.jpg)
 
 
 ### 3.3 Problems and Solutions to Animations
@@ -65,6 +65,7 @@ Blender was great for creating the framework for the animation, which included t
 Unfortunately, there were problems with Blender which made it to where animations could not be created in Blender. Blender has a high skill curve, and it was not something I was able to utilize for this project, and the units used in Blender are metric, Unity is not. Also, the axis in Blender and Unity have swapped Z and Y axis, which made converting from Blender to Unity when animating to have significant issues. 
 
 Figure 2. Animation Layout in Blender 
+![Figure 2](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-002.jpg) 
 
 ## 4. Implementation 
 
@@ -75,6 +76,7 @@ Figure 2. Animation Layout in Blender
 User controls are simple, implemented from the Oculus SDK. The left controller analog stick moves the user along the x/z plane, which is horizontally. The Right controller analog stick move the user 45 degrees in the direction it is moved to. The reason this is a constant rotation input rather than a smooth linear turn is because it helps limit the amount of motion sickness a user can get. A linear rotation is known to have an experience consequence, which is something I want to avoid. Figure 3 shows the starting position of the user in the environment. The users’ controllers are seen as hands in the program. The hand objects are a part of the Oculus SDK and have dynamic feedback based on the buttons the user presses down or places a finger on. 
 
 Figure 3. User at the start of the Scenario 
+![Figure 3](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-003.jpg)
 
 ##### 4.1.2 Environment Interactions
 
@@ -83,37 +85,14 @@ A door model was created with door handles. To open the door, users must press t
 Because a goal of this study was to implement a SDSS, the users must have a defensive weapon. At the beginning of the program, the user is placed at the end of the hallway next to a desk which has a defensive weapon on it. Users can pick up the defensive weapon, with the help of the Oculus SDK. The Oculus SDK allows for a specified object to be grabbed by the user if the specified object has the OVRGrabbable script attached to it. The controller, or what represents the hand in the VR Environment, has an OVRGrabber script attached to it, which interacts with the objects with the OVRGrabbable script. 
 
 Figure 4. Interacting with the Door 
-
+![Figure 4](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-004.jpg)
 
 ##### 4.2 Animations
 
 The animation system is designed in a Model-View-Controller (MVC). As seen in figure 5a, the model represents the Unity Environment, which monitors environmental variables and sends information to the controller. The Controller represents the Animation Controller, which receives information from the Model and View. The View represents the Virtual Character, which sends and receives information to and from the Controller. Because the animation system is a MVC design, it allows for the view to be swapped out for other objects. This is important because the later study will be looking for implicit bias. Models that will be swapped out will have different races or features that may cause a user to respond to the situation differently. Figure 5b shows the elements of the MVC in the Unity Editor. The animation controller shows the states that can be met, which triggers animations in the Virtual Character. 
 
-Figure 5a.
-
-
-Model 
-
-Controller 
-
-View 
-
-Unity Environment 
-
-Animation Controller 
-
-Virtual Character 
-
-User Interacts with environment, sends updates to Controller 
-
-Controller sets states when conditions are met. 
-
-Virtual Character has its animations changed by Animation Controller 
-
-Virtual Character sends updates on its own state to the controller. 
-
-
-Figure 5b. MVC Elements within Unity 
+Figure 5. MVC Elements within Unity 
+![Figure 5](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-005.jpg)
 
 ##### 4.2.1 Animation Rigging
 
@@ -122,6 +101,7 @@ Due to the earlier stated problem with creating animations in Blender, I had to 
 Because I used Animation Rigging, there does not need to be an animation created for every action. I was able to code functions that detect which kind item, weapon or not, is active in the scene and the animation controller plays the correct animation. This allows for the Virtual Character to be animated with more details, such as arm and leg movements, because children of a parent object take the position, scale, and rotation of its parent. 
 
 Figure 6. Animation Rig on Virtual Character 
+![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-006.jpg) ![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-007.jpg)
 
 ##### 4.2.2 Animation Triggering
 
@@ -132,12 +112,14 @@ The Animation Controller collects data from the Unity Environment and triggers c
 In Unity, a Game Object is a data type that represents an object in the scene of the program. Objects have many members and functions attached to it, which can be set and manipulated as needed. Game objects have several environmental variables, physics vectors such as position, velocity, acceleration, as well as abstract data types that can be defined in a custom way. Figure 7 shows the Unity Hierarchy (right), which are all the game objects that are available in the environment, and the environment (left) which shows all the objects that are active in the hierarchy. 
 
 Figure 7. Unity Hierarchy and Scene 
+![Figure 7](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-008.jpg) ![Figure 7](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-009.jpg)
 
 There were many performance issues in the program. One of them was that the program wanted to render all the objects, even if the user is not looking at them. To solve this, there needed to be a Level-of-detail (LOD) on all the objects and cull objects if the user is a certain distance away. Figure 8 shows the distance away from desks the user will need to be in order for it to be culled, or for it to not be rendered. LOD became unnecessary further on because a better solution was found related to the lighting of the environment. Because LOD was not used, it allowed the detail and rendering of objects to remain unchanged while running the program.
 Page Break
  
 
 Figure 8. Level of Detail on Game Objects 
+![Figure 8](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-010.jpg)
 
 ## 4.4 Lighting
 
@@ -154,12 +136,14 @@ Baked lighting does not cast shadows on moving objects during runtime, which has
 Mixed lighting, just like the name implies, implements a mixture of baked and Realtime lighting. This means that lights are already configured to cast on static objects while shadows were computed during runtime. This was one of the solutions implemented to help improve performance. Figure 9 illustrates the lighting differences between baked, Realtime, and mixed lighting. 
 
 Figure 9. Types of Lighting in Unity 
+![Figure 9](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-011.jpg)
 
 ##### 4.5 Project testing
 
 This project was tested on the Oculus Quest 2. Figure 10 shows the Oculus Quest 2 with its controllers. The Oculus Quest 2 is very similar to the Oculus Quest, but with high performance hardware. As stated previously, the Oculus Quest 2 was released recently, coming out in October of 2020. There were a few compatibility issues on older versions of Unity. Due to this, Unity3d version 2020.2.3f1 was used. It can be assumed newer versions of Unity will also be compatible, but there was no reason to update when creating the project.  
 
 Figure 10. 
+![Figure 10](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-012.jpg)
 
 Oculus Quest 2 with Controllers 
 
@@ -172,6 +156,7 @@ The project has only been tested on the Oculus Quest 2, but it has been set up t
 Users were given questions related to their experience in the VR Environment. Questions were designed to avoid neutrality; the questions ask for feedback as strongly agree, agree, disagree, strongly disagree. The sample space includes 6 students with prior experience in Virtual Reality, but not specifically with the Oculus Quest 2. Users were notified about the SDSS and what their goal was but did not know about the layout of the building or environment. It is important to note that individual experience in VR may impact results. Figure 11 shows the responses to the different kinds of questions the users were asked. 
 
 Figure 11. User Feedback 
+![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-013.png) ![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-014.png) ![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-015.png) ![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-016.png) ![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-017.png) ![Figure 6](https://raw.githubusercontent.com/connors128/nextjs-blog/main/pictures/image-018.png)
 
 ##### 5.1.1 Subjective Results and Analysis
 
