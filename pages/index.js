@@ -22,28 +22,28 @@ export default function Home({allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Hi, I'm Connor. Currently attending Texas State University for the last semester, studying Computer Science.</p>
+        <p>Hi, I'm Connor. Final semester student at Texas State University, studying Computer Science.</p>
         <p>
           (If you'd like, check out my{' '}
           <a href="https://github.com/connors128">GitHub</a>.)
         </p>
       </section>
-            <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
+        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+          <h2 className={utilStyles.headingLg}>About Me</h2>
+          <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
-          <li className={utilStyles.listItem} key={id}>
-            <Link href={`/posts/${id}`}>
-              <a>{title}</a>
-            </Link>
-            <br />
-            <small className={utilStyles.lightText}>
+            <li className={utilStyles.listItem} key={id}>
+              <Link href={`/posts/${id}`}>
+                <a>{title}</a>
+              </Link>
+              <br />
+              <small className={utilStyles.lightText}>
               <Date dateString={date} />
-            </small>
-          </li>
+              </small>
+            </li>
           ))}
-        </ul>
-      </section>
+          </ul>
+        </section>
     </Layout>
   )
 }
