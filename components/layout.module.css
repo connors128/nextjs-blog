@@ -1,7 +1,10 @@
-.container {
-  max-width: 36rem;
-  padding: 0 1rem;
+.container { 
+  max-width: 40rem;
+  padding: 2rem;
   margin: 3rem auto 6rem;
+  color:  #fff;
+  background-color: rgba(20,20,20);
+  border-radius: 6px;
 }
 
 .header {
@@ -12,4 +15,18 @@
 
 .backToHome {
   margin: 3rem 0 0;
+}
+
+.imagespacing {
+  align-items: center;
+  padding-top: 10rem;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.backgroundImage
+{
+  background-image: url(/public/images/background-test.png);
+  background-repeat: repeat;
+  z-index: -1;
 }

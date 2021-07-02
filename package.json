@@ -11,9 +11,12 @@
     "date-fns": "^2.22.1",
     "gray-matter": "^4.0.3",
     "next": "^10.0.0",
+    "next-images": "^1.8.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-scroll-parallax": "^2.4.0",
     "remark": "^13.0.0",
-    "remark-html": "^13.0.1"
+    "remark-html": "^13.0.1",
+    "styled-components": "^5.3.0"
   }
 }
