@@ -19,20 +19,13 @@ export async function getStaticProps() {
 
 export default function Home({allPostsData }) {
 
-  // useEffect(()=> {
-  //   window.onscroll = function() {
-  //     var speed = 5.0;
-  //     document.body.style.backgroundPosition = (-window.pageXOffset/speed)+"px "+(-window.pageYOffset/speed)+"px";
-  //   }
-  //   return ()=> { //remove the event listener
-  //   }}, [])
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Hi, I'm Connor. Final semester student at Texas State University, studying Computer Science.</p>
+        <p>Hello, I'm Connor. Staff Software Engineer at SciTec.</p>
       </section>
         <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
           <h2 className={utilStyles.headingLg}>About Me</h2>
