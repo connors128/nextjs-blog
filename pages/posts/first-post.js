@@ -21,7 +21,7 @@ export default function FirstPost() {
       </Head>
       <h1>First Post</h1>
       <h2>
-        <Link href="/">
+        <Link legacyBehavior href="/">
           <a>Back to home</a>
         </Link>
       </h2>
