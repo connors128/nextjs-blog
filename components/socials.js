@@ -8,7 +8,7 @@ export default function Socials(){
 	return (
 		<div align="center">
       <section className={utilStyles.headingLg}> Socials </section>
-			<Link href="https://github.com/connors128">
+			<Link legacyBehavior href="https://github.com/connors128">
 				<a className={styles.imagespacing}>
 	        <Image
 	              priority
@@ -21,7 +21,7 @@ export default function Socials(){
 	            />
         </a>
       </Link>
-			<Link href="https://www.linkedin.com/in/connor-scott-79b531189/">
+			<Link legacyBehavior href="https://www.linkedin.com/in/connor-scott-79b531189/">
 				<a className={styles.imagespacing}>
 	        <Image
 	              priority
